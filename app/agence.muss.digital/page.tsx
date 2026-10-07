@@ -1,8 +1,9 @@
 "use client"
 
+import Form from "@/components/Form";
 import { Fullscreen } from "lucide-react";
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 
 interface CommitmentCardProps {
@@ -66,7 +67,7 @@ function CommitmentsSection() {
 
 function ButtonPrimary({ children }: { children: React.ReactNode }) {
     return (
-        <button className="inline-flex items-center gap-2 rounded-xl bg-orange-500 px-5 py-3 font-semibold text-slate-900 transition hover:bg-orange-400">
+        <button className="inline-flex items-center gap-2 rounded-xl bg-orange-500 px-5 py-3 font-semibold text-slate-900 transition hover:bg-orange-400" >
             {children}
         </button>
     );
@@ -118,7 +119,7 @@ function IconFacebook({ className = "" }: { className?: string }) {
 }
 
 export default function page() {
-
+      const [open, setOpen] = useState(false)
     useEffect(() => {
         const scrollToHash = () => {
             if (window.location.hash) {
@@ -146,7 +147,7 @@ export default function page() {
 
     return (
         <div>
-
+            {open && <Form onClose={() => setOpen(false)} />}
             <section className="relative overflow-hidden bg-[#172B36] pb-24 pt-6">
                 <div
                     aria-hidden
@@ -183,9 +184,9 @@ export default function page() {
                         <p className="ml-130">avec la fierte, en afrique avec des talents et des experts</p>
                         <div className="mt-8 flex flex-wrap gap-4 ml-130 mb-30">
                             <ButtonPrimary>Nos service</ButtonPrimary>
-                            <ButtonSecondary dark>
-                                Travaillons ensemble
-                            </ButtonSecondary>
+                            <button className="inline-flex items-center justify-center gap-2 rounded-xl border bg-white px-5 py-3 font-semibold text-slate-900 transition" onClick={() => setOpen(true)}>
+                                        Travail ensemble
+                                      </button>
                         </div>
                         <span className="ml-140">+4 PROJETS MENES AVEC SUCCES</span>
 
@@ -213,9 +214,9 @@ export default function page() {
                 <div className="mx-15">
                     <h1 className="text-4xl font-bold">Ce que nous faisons <br />différemment et pourquoi ça <br /> compte.</h1>
                     <p className="mt-10 mb-20 leading-[1.6rem] font-[16px]">Chez MUSS Digital, on connaît les réalités du secteur : déceptions, <br /> les projets en retard, les prestataires injoignables, les devis flous, <br /> les livrables qui ne ressemblent pas à ce qu’on vous avait montré au <br /> début. On a décidé de faire l’opposé. Point par point.</p>
-                    <ButtonPrimary>
-                        Travaillons ensemble
-                    </ButtonPrimary>
+                    <button className="inline-flex items-center justify-center gap-2 rounded-xl border bg-white px-5 py-3 font-semibold text-slate-900 transition" onClick={() => setOpen(true)}>
+                                Contactez nous
+                              </button>
                 </div>
                 <div>
                     <CommitmentsSection/>
@@ -349,7 +350,8 @@ export default function page() {
                      écoute, on vous guide, et on livre avec rigueur, toujours dans les <br />
                       délais annoncés. Voici comment on travaille, étape par étape :
                     </p>
-                    <button className="bg-amber-500 p-2 rounded-2xl mt-10">
+                    
+                    <button className="bg-amber-500 p-2 rounded-2xl mt-10" onClick={() => setOpen(true)}>
                         Travaillons ensemble
                     </button>
                 </div>
@@ -436,7 +438,7 @@ export default function page() {
              Une Afrique qui ne consomme plus uniquement la technologie des autres, mais qui la crée, la pense et l’adapte.
             </p>
             <div className="mt-6 flex gap-4">
-              <ButtonPrimary>Contactez-nous</ButtonPrimary>
+              <ButtonPrimary >Contactez-nous</ButtonPrimary>
               <ButtonSecondary>Voir les formations</ButtonSecondary>
             </div>
           </div>
@@ -451,7 +453,9 @@ export default function page() {
               Réconcilier l’Afrique avec sa capacité à apprendre et innover par le numérique.
             </p>
             <div className="mt-6 flex gap-4">
-              <ButtonPrimary>Contactez-nous</ButtonPrimary>
+              <button className="inline-flex items-center justify-center gap-2 rounded-xl border p-3 bg-amber font-semibold text-slate-900 transition" onClick={() => setOpen(true)}>
+                    Contactez nous
+                </button>
               <ButtonSecondary>Voir les formations</ButtonSecondary>
             </div>
           </div>
@@ -511,6 +515,7 @@ export default function page() {
                       </div>
                     </div>
                   </footer>
+                  
         </div>
     )
 }

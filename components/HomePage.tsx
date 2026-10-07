@@ -2,6 +2,7 @@
 
 import  Image  from "next/image";
 import { useState, useEffect } from "react";
+import Form from "./Form";
 
 export function IconUsers({ className = "" }: { className?: string }) {
   return (
@@ -194,7 +195,7 @@ const QUESTIONS = [
     icon: IconMonitor,
     title: "Tu n'as jamais touché à un ordinateur ?",
     desc:
-      "Tu penses que \u201cle numérique, c'est pour les autres\u201d. On commence par les bases, sans juger, sans pression.",
+      "Tu penses que le numérique, c'est pour les autres. On commence par les bases, sans juger, sans pression.",
   },
   {
     icon: IconCoins,
@@ -213,7 +214,7 @@ const STATS = [
 
 const TESTIMONIALS = [
   {
-    title: "\u201cJ'ai repris confiance en moi grâce à cette accompagement !\u201d",
+    title: "J'ai repris confiance en moi grâce à cette accompagement !",
     text: "Avant, je pensais que le numérique n'était pas fait pour moi. Aujourd'hui, je gère le site web d'une PME et je me sens enfin légitime dans ce que je fais.",
     name: "Nadège Fonkoua",
     role: "Étudiant (23 ans)",
@@ -221,7 +222,7 @@ const TESTIMONIALS = [
     avatar: "/avatar-3.jpg",
   },
   {
-    title: "\u201cDe couturière à créatrice digitale freelance !\u201d",
+    title: "De couturière à créatrice digitale freelance !",
     text: "Je suis passée de couturière sans ordi à créatrice de visuels freelance. Ce n'est pas juste une formation. C'est un déclic.",
     name: "Samiratou Salia",
     role: "Étudiant (25 ans)",
@@ -229,7 +230,7 @@ const TESTIMONIALS = [
     avatar: "/avatar2.png",
   },
   {
-    title: "\u201cUne vraie communauté, pas juste une formation\u201d",
+    title: "Une vraie communauté, pas juste une formation",
     text: "C'est la première fois que je me sens aussi bien entouré. L'équipe est bienveillante, toujours à l'écoute. Ici, on apprend sans peur de l'échec.",
     name: "Sadrack Ivan",
     role: "Étudiant (22 ans)",
@@ -237,7 +238,7 @@ const TESTIMONIALS = [
     avatar: "/avatar-4.jpg",
   },
   {
-    title: "\u201cJe n'aurais jamais cru aller aussi loin\u201d",
+    title: "Je n'aurais jamais cru aller aussi loin",
     text: "J'ai découvert des compétences que je ne soupçonnais pas. Grâce à MUSS DIGITAL, j'ai un vrai plan de carrière dans le numérique.",
     name: "Gabin",
     role: "Étudiant (24 ans)",
@@ -285,7 +286,7 @@ function ButtonPrimary({ children }: { children: React.ReactNode }) {
   );
 }
 
-function ButtonSecondary({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
+export function ButtonSecondary({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
   return (
     <button
       className={`inline-flex items-center gap-2 rounded-xl border px-5 py-3 font-semibold transition ${dark
@@ -311,6 +312,8 @@ function Stars({ count }: { count: number }) {
 
 export default function HomePage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [open, setOpen] = useState(false)
+
 
   useEffect(() => {
     const scrollToHash = () => {
@@ -342,7 +345,7 @@ export default function HomePage() {
 
   return (
     <main className="min-h-screen bg-white text-slate-900">
-
+      {open && <Form onClose={() => setOpen(false)} />}
       <section className="relative overflow-hidden bg-[#01814e] pb-24 pt-6">
         <div
           aria-hidden
@@ -500,8 +503,8 @@ export default function HomePage() {
               <p className="mt-2 text-sm text-slate-600">{f.desc}</p>
 
               <div className="mt-4 flex items-center justify-between border-t border-dashed border-slate-200 pt-3 text-sm text-slate-500">
-                <span>📅 {f.duration}</span>
-                <span>📍{f.mode}</span>
+                <span> {f.duration}</span>
+                <span>{f.mode}</span>
               </div>
 
               <div className="mt-3 flex flex-wrap gap-2">
@@ -520,11 +523,11 @@ export default function HomePage() {
       <section className="mx-auto grid max-w-7xl grid-cols-1 gap-16 px-6 py-20 md:grid-cols-2" id="approche">
         <div>
           <h2 className="text-3xl font-bold leading-tight">
-            Apprendre chez nous, <br /> c&apos;est simple.
+            Apprendre chez nous, <br /> c'est simple.
           </h2>
           <p className="mt-4 max-w-sm text-slate-600">
-            Tu avances à ton rythme, entouré(e) et soutenu(e). Pas besoin d&apos;avoir un
-            ordinateur ou de &quot;connaître déjà. On t&apos;accueille là où tu es, et on t&apos;aide
+            Tu avances à ton rythme, entouré(e) et soutenu(e). Pas besoin d'avoir un
+            ordinateur ou de connaître déjà. On t'accueille là où tu es, et on t'aide
             à progresser <span className="font-semibold text-slate-900">pas à pas.</span>
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
@@ -664,7 +667,7 @@ export default function HomePage() {
 
               {f.a === "list2" && (
                 <div className="mt-2 text-slate-600">
-                  <p>On ne promet pas de miracles. Mais on t&apos;aide vraiment :</p>
+                  <p>On ne promet pas de miracles. Mais on t'aide vraiment :</p>
                   <ul className="mt-2 list-disc space-y-1 pl-5">
                     <li>à construire ton projet (emploi, stage, auto-entreprise)</li>
                     <li>à te connecter à notre réseau de partenaires</li>
@@ -845,7 +848,7 @@ export default function HomePage() {
             <Image src="/logo.svg" alt='logo de muss digit' width={70} height={70} />
 
             <p className="mt-4 max-w-xs text-sm text-slate-600">
-              MUSS Digital : votre accès à un monde d&apos;opportunités numériques{" "}
+              MUSS Digital : votre accès à un monde d'opportunités numériques{" "}
               <span className="text-blue-600 underline">illimitées.</span>
             </p>
           </div>
